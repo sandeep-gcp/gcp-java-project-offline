@@ -1,0 +1,33 @@
+Description
+Google Cloud App Engine provides a solid, easy-to-access platform for a wide range of web apps. Its interoperability with other Google Cloud services, such as Cloud Datastore, enhances its effectiveness. In this hands-on lab, we’ll deploy an app to App Engine that allows users to enter details into a NoSQL database, Cloud Datastore, and displays the proper HTML template and CSS. The process requires that we customize the config.py file before deploying the app.
+
+Objectives
+Successfully complete this lab by achieving the following learning objectives:
+
+Enable APIs and clone GitHub repository.
+
+From the main navigation, visit the APIs & Services > Libraries page, and search for "Datastore".
+Select the Cloud Datastore API.
+If the API is not available, click Enable.
+Repeat the process to enable the Cloud Build API and Container Registry API
+Activate the Cloud Shell.
+When it spins up, create the necessary bucket (bucket name must be unique): gsutil mb -c regional -l us-east1 gs://[BUCKET_NAME] gsutil iam ch allUsers:objectViewer gs://[BUCKET_NAME]
+Clone the GitHub repository: git clone https://github.com/linuxacademy/content-gc-essentials
+Change directory to the content-gc-essentials/app-engine-lab folder.
+Configure `config.py` file.
+
+From the Cloud Shell Editor, open config.py in the app-engine-lab folder.
+Change PROJECT_ID to the current project, as shown in the Cloud Shell.
+Change the "CLOUD_STORAGE_BUCKET" variable value to your unique bucket name.
+Save the file.
+Deploy the app.
+
+In the Cloud Shell, enter the following code:
+gcloud config set app/cloud_build_timeout 6000s
+gcloud app deploy
+When prompted, choose the us-east1 region.
+Test the app.
+
+In the Cloud Shell, enter the following code:
+gcloud app browse
+If the browser window does not open, click the generated link.
